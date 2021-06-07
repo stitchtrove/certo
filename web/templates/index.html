@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Index Page
+{% endblock %}
+
+{% block content %}
+<h1>Enter your polygon</h1>
+<br style="margin-bottom: 30px;">
+<h2>Contains</h2>
+<form type="" action="/process" method="POST" name="form">
+    <input type="text" name="collection" />
+    <input type="text" name="max_records" />
+    <input type="text" name="processing_level" />
+    <input type="text" name="sort_by" />
+    <input type="text" name="sort_order" />
+    <input type="text" name="status" />
+    <input type="text" name="dataset" />
+    <input type="submit" name="submit" value="submit" />
+</form>
+
+{% endblock %}
