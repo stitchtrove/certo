@@ -13,13 +13,20 @@ import configparser
 
 app = Flask(__name__)
 
+config = configparser.ConfigParser()
+config.read('config.ini')
+username = config['keycloak']['username']
+password = config['keycloak']['password']
+data_storage = config['keycloak']['storage_url']
+
 #def generate_key(arguments):
 def generate_key():
     global keycloak
+
     keycloak_data = {
         'client_id': 'CLOUDFERRO_PUBLIC',
-        'username': 'amw@pml.ac.uk',
-        'password': 'Creodias13!',
+        'username': username,
+        'password': password,
         'grant_type': 'password'
     }
     response = requests.post('https://auth.creodias.eu/auth/realms/DIAS/protocol/openid-connect/token', data=keycloak_data)
@@ -27,12 +34,12 @@ def generate_key():
     keycloak = resp_dict['access_token']
     return(resp_dict['access_token'])
 
-def add_config_option(config, section, option, string):
-    if config.get(section, option) == 'false':
-        return string
-    else:
-        string=string+'&'+option+'='+config.get(section, option)
-        return string
+# def add_config_option(config, section, option, string):
+#     if config.get(section, option) == 'false':
+#         return string
+#     else:
+#         string=string+'&'+option+'='+config.get(section, option)
+#         return string
 
 class files:
     def __init__(self, name, zipper):
@@ -78,7 +85,8 @@ def generate_data(listString):
         download_url = str(obj[1]) + '?token=' + keycloak
         resp = requests.get(download_url)
         name = str(obj[0]) + '.zip'
-        filename = os.path.join('downloaded_data',name)
+        #filename = os.path.join('downloaded_data',name)
+        filename = os.path.join(data_storage, name)
         file = open(filename, 'wb')
         file.write(resp.content)
         file.close
