@@ -28,6 +28,11 @@ def download_files():
     sort_order = request.form.get('sort_order')
     status = request.form.get('status')
     dataset = request.form.get('dataset')
+    timeliness = request.form.get('timeliness')
+    product_type = request.form.get('product_type')
+    instrument = request.form.get('instrument')
+    start_date = request.form.get('start_date')
+    completion_date = request.form.get('completion_date')
 
     variables = [{
         "collection": collection, 
@@ -37,6 +42,11 @@ def download_files():
         "sort_order": sort_order, 
         "status": status, 
         "dataset": dataset, 
+        "timeliness": timeliness, 
+        "product_type": product_type, 
+        "instrument": instrument, 
+        "start_date": start_date, 
+        "completion_date": completion_date, 
     }]
     # turn variables into string to send in request
     listString = json.dumps(variables)

@@ -5,17 +5,77 @@ Index Page
 {% endblock %}
 
 {% block content %}
-<h1>Enter your polygon</h1>
-<br style="margin-bottom: 30px;">
-<h2>Contains</h2>
+
 <form type="" action="/process" method="POST" name="form">
-    <input type="text" name="collection" />
-    <input type="text" name="max_records" />
-    <input type="text" name="processing_level" />
-    <input type="text" name="sort_by" />
-    <input type="text" name="sort_order" />
-    <input type="text" name="status" />
-    <input type="text" name="dataset" />
+    <div class="row">
+        <div class="form-group col">
+            <label>Collection</label>
+            <input type="text" name="collection" class="form-control" />
+            <small>Sentinel3</small>
+        </div>
+        <div class="form-group col">
+            <label>Max Records</label>
+            <input type="text" name="max_records" class="form-control" />
+            <small>1</small>
+        </div>
+        <div class="form-group col">
+            <label>Processing Level</label>
+            <input type="text" name="processing_level" class="form-control" />
+            <small>Level1</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+            <label>Sort By</label>
+            <input type="text" name="sort_by" class="form-control" />
+            <small>startDate</small>
+        </div>
+        <div class="form-group col">
+            <label>Sort Order</label>
+            <input type="text" name="sort_order" class="form-control" />
+            <small>descending</small>
+        </div>
+        <div class="form-group col">
+            <label>Status</label>
+            <input type="text" name="status" class="form-control" />
+            <small>all</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+            <label>Dataset</label>
+            <input type="text" name="dataset" class="form-control" />
+            <small>ESA-DATASET</small>
+        </div>
+        <div class="form-group col">
+            <label>Timeliness</label>
+            <input type="text" name="timeliness" class="form-control" />
+            <small>Non+Time+Critical</small>
+        </div>
+        <div class="form-group col">
+            <label>Product Type</label>
+            <input type="text" name="product_type" class="form-control" />
+            <small>ERR</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+            <label>Instrument</label>
+            <input type="text" name="instrument" class="form-control" />
+            <small>OL</small>
+        </div>
+        <div class="form-group col">
+            <label>Start Date</label>
+            <input type="text" name="start_date" class="form-control" />
+            <small>2021-06-01T00%3A00%3A00Z</small>
+        </div>
+        <div class="form-group col">
+            <label>Completion Date</label>
+            <input type="text" name="completion_date" class="form-control" />
+            <small>2021-06-02T23%3A59%3A59Z</small>
+        </div>
+    </div>
+
     <input type="submit" name="submit" value="submit" />
 </form>
 

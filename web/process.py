@@ -63,7 +63,17 @@ def generate_data(listString):
     + '&status=' \
     + string[0]['status'] \
     + '&dataset=' \
-    + string[0]['dataset']
+    + string[0]['dataset'] \
+    + '&timeliness=' \
+    + string[0]['timeliness'] \
+    + '&productType=' \
+    + string[0]['product_type'] \
+    + '&instrument=' \
+    + string[0]['instrument'] \
+    + '&startDate=' \
+    + string[0]['start_date'] \
+    + '&completionDate=' \
+    + string[0]['completion_date'] \
 
     search_string=search_base
     # for section in config.sections():
@@ -71,7 +81,6 @@ def generate_data(listString):
     #         print(par)
     #         if ((par !='maxRecords') & (par !='collection')) :
     #             search_string=add_config_option(config, section, par, search_string)
-
 
     req=requests.get(search_string)
     ret=req.json()
