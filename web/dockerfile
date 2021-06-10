@@ -1,6 +1,18 @@
 FROM ubuntu:latest
 RUN apt-get update -y
 RUN apt-get install python3-pip -y
+RUN apt-get install python git wget unzip -y
+
+RUN cd /opt/
+RUN wget https://github.com/cylc/cylc-flow/archive/refs/tags/7.9.3.zip
+RUN mv /7.9.3.zip /opt/
+RUN cd /opt && unzip 7.9.3.zip 
+RUN cd /opt/cylc-flow-7.9.3
+RUN export PATH=$PWD/bin:$PATH
+RUN ln -s /opt/cylc-flow-7.9.3/ /opt/cylc
+RUN cp /opt/cylc/usr/bin/cylc /usr/local/bin
+RUN cd /opt/cylc/etc/ && cylc get-global-config > global.rc
+
 COPY . /web
 WORKDIR /web
 RUN pip install -r requirements.txt
