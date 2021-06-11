@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 RUN apt-get update -y
 RUN apt-get install python3-pip -y
-RUN apt-get install python git wget unzip -y
+RUN apt-get install python git wget unzip nano -y
 
 RUN cd /opt/
 RUN wget https://github.com/cylc/cylc-flow/archive/refs/tags/7.9.3.zip
@@ -12,9 +12,20 @@ RUN export PATH=$PWD/bin:$PATH
 RUN ln -s /opt/cylc-flow-7.9.3/ /opt/cylc
 RUN cp /opt/cylc/usr/bin/cylc /usr/local/bin
 RUN cd /opt/cylc/etc/ && cylc get-global-config > global.rc
+RUN sed -i "s|https|http|g" /opt/cylc-flow-7.9.3/etc/global.rc
+
+RUN cd /
+RUN git clone --branch 2019.01.x https://github.com/metomi/rose.git
+RUN mv /rose /opt/
+RUN cd /opt/rose/bin/
+RUN export PATH=$PWD/bin:$PATH
+RUN cp /opt/rose/usr/bin/rose /usr/local/bin
+
+
 
 COPY . /web
 WORKDIR /web
+RUN mv /web/cylc /cylc
 RUN pip install -r requirements.txt
 RUN mkdir downloaded_data
 ENTRYPOINT ["python3"]
