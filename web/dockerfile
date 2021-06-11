@@ -26,6 +26,6 @@ RUN sed -i -e 's/-Xmx1G/-Xmx4G/g' /usr/local/snap/bin/gpt.vmoptions
 
 
 RUN pip install -r requirements.txt
-RUN mkdir downloaded_data
+#RUN mkdir downloaded_data
 ENTRYPOINT ["python3"]
 CMD ["app.py"]
